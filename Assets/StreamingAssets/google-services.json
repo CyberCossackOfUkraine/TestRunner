@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "654533067102",
+    "project_id": "runner-a1c20",
+    "storage_bucket": "runner-a1c20.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:654533067102:android:25c639e6caabe59701cfcf",
+        "android_client_info": {
+          "package_name": "com.BG.Runner"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZLuxM5UWM5e9U92HZr7nfb8LBtDExLIU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
