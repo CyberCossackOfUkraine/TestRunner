@@ -11,12 +11,13 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
-        _startButton.onClick.AddListener(StartGame);
+       _startButton.onClick.AddListener(StartGame);
     }
 
     private void StartGame()
     {
-        _startButton.gameObject.SetActive(false);
+        PlayerStateController.instance.SetStateActive();
+        _startButton.image.DOFade(0f, 1f);
     }
 
 }

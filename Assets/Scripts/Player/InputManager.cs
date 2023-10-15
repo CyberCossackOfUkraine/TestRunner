@@ -47,6 +47,7 @@ public class InputManager : MonoBehaviour
         if (touch.phase == TouchPhase.Ended)
         {
             Vector2 deltaSwipe = touch.deltaPosition;
+            PopUpManager.instance.ShowMessage("Hey");
             if (Mathf.Abs(deltaSwipe.x) > Mathf.Abs(deltaSwipe.y))
             {
                 _swipeLeft |= deltaSwipe.x < 0;

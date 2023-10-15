@@ -7,11 +7,12 @@ public class PlayerStateDead : IPlayerState
     public void Enter()
     {
         Debug.Log("Enter Dead State");
+        AnimationController.instance.SetAnimation(3);
     }
 
     public void Exit()
     {
-        Debug.Log("Enter Dead State");
+        Debug.Log("Exit Dead State");
     }
 
     public void Update()

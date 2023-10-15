@@ -35,7 +35,7 @@ public class PopUpManager : MonoBehaviour
         Invoke("HideMessage", 5);
     }
 
-    public void HideMessage()
+    private void HideMessage()
     {
         popUpWindow.DOFade(0f, 1f);
         popUpText.DOFade(0f, 1f);
