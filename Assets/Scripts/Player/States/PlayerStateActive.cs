@@ -67,16 +67,19 @@ public class PlayerStateActive : IPlayerState
 
     private void ChangeLane(int direction)
     {
-        Debug.Log("Change Lane. Direction: " + direction + "\nCurrent Lane: " + _currentLane);
         int newLane = Mathf.Clamp(_currentLane + direction, 1, 3);
         float targetX = newLane * _laneWidth;
-        Debug.Log("targetX: " + targetX);
-        _characterController.transform.DOMoveX(targetX, 0.5f).OnComplete(Test);
+
+        Vector3 targetPosition = new Vector3(targetX, _characterController.transform.position.y, _characterController.transform.position.z);
+
+        Coroutine coroutine = CoroutineProxy.instance.StartProxyCoroutine(MoveX());
+
+        //_characterController.transform.DOMoveX(targetX, 0.5f).OnComplete(Test);
         
         _currentLane = newLane;
     }
 
-    private IEnumerator MoveX(float targetX)
+    private IEnumerator MoveX()
     {
         yield return null;
     }

@@ -14,10 +14,11 @@ public class CoroutineProxy : MonoBehaviour
         } else
         {
             instance = this;
+            Debug.Log("THIS");
         }
     }
 
-    public Coroutine StartCoroutine(IEnumerator routine)
+    public Coroutine StartProxyCoroutine(IEnumerator routine)
     {
         return StartCoroutine(routine);
     }

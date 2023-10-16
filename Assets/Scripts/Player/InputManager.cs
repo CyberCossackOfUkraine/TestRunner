@@ -6,9 +6,6 @@ public class InputManager : MonoBehaviour
 {
     public static InputManager instance;
 
-    private Vector2 _startTouchPosition;
-    private Vector2 _endTouchPosition;
-
     private bool _swipeLeft;
     private bool _swipeRight;
 
@@ -47,32 +44,17 @@ public class InputManager : MonoBehaviour
 
         Touch touch = Input.GetTouch(0);
 
-        switch (touch.phase)
+        if (touch.phase == TouchPhase.Ended)
         {
-            case TouchPhase.Began:
-                _startTouchPosition = touch.position;
-                break;
-            case TouchPhase.Moved:
-                _endTouchPosition = touch.position;
-                break;
-            case TouchPhase.Ended:
-                _endTouchPosition = touch.position;
-                DetectInput();
-                break;
+            Vector2 deltaSwipe = touch.deltaPosition;
+            if (Mathf.Abs(deltaSwipe.x) > Mathf.Abs(deltaSwipe.y))
+            {
+                _swipeLeft |= deltaSwipe.x < 0;
+                _swipeRight |= deltaSwipe.x > 0;
+            }
         }
-    }
 
-    private void DetectInput()
-    {
-        float deltaX = _endTouchPosition.x - _startTouchPosition.x;
-        float deltaY = _endTouchPosition.y - _startTouchPosition.y;
-
-        if (Mathf.Abs(deltaX) > Mathf.Abs(deltaY))
-        {
-            _swipeLeft = deltaX < 0;
-            _swipeRight = deltaX > 0;
-            Debug.Log("Swipe Left: " + _swipeLeft + "\nSwipe Right: " + _swipeRight);
-        }
+        
     }
 
 }
