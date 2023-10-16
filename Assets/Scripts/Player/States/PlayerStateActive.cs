@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 public class PlayerStateActive : IPlayerState
 {
     private CharacterController _characterController;
+    private Player _player;
+    private CoroutineProxy _coroutineProxy;
     private int _currentLane;
 
     private float _currentSpeed;
@@ -15,11 +18,18 @@ public class PlayerStateActive : IPlayerState
     public void Enter()
     {
         Debug.Log("Enter Active State");
-        _characterController = Player.instance.characterController;
-        _currentLane = Player.instance.currentLane;
-        _currentSpeed = Player.instance.currentSpeed;
-        _acceleration = Player.instance.acceleration;
-        _laneWidth = Player.instance.laneWidth;
+        InitVars();
+    }
+
+    private void InitVars()
+    {
+        _player = Player.instance;
+        _coroutineProxy = CoroutineProxy.instance;
+        _characterController = _player.characterController;
+        _currentLane = _player.currentLane;
+        _currentSpeed = _player.currentSpeed;
+        _acceleration = _player.acceleration;
+        _laneWidth = _player.laneWidth;
         AnimationController.instance.SetAnimation(2);
     }
 
@@ -57,11 +67,22 @@ public class PlayerStateActive : IPlayerState
 
     private void ChangeLane(int direction)
     {
+        Debug.Log("Change Lane. Direction: " + direction + "\nCurrent Lane: " + _currentLane);
         int newLane = Mathf.Clamp(_currentLane + direction, 1, 3);
         float targetX = newLane * _laneWidth;
-
-        _characterController.transform.DOMoveX(targetX, 0.5f);
-
+        Debug.Log("targetX: " + targetX);
+        _characterController.transform.DOMoveX(targetX, 0.5f).OnComplete(Test);
+        
         _currentLane = newLane;
+    }
+
+    private IEnumerator MoveX(float targetX)
+    {
+        yield return null;
+    }
+
+    private void Test()
+    {
+        Debug.Log("Completed. Position: " + Player.instance.transform.position);
     }
 }

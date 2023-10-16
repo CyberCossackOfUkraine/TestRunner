@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ObjectPooler", menuName = "ScriptableObjects/New Object Pooler")]
 public class ObjectPoolerScriptableObject : ScriptableObject
 {
-    public List<GameObject> poolObjectVariants;
+    public List<ZoneTile> poolObjectVariants;
     public int poolAmount;
     public bool willGrow;
 }

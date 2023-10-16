@@ -5,6 +5,8 @@ using UnityEngine;
 public class ZoneTile : MonoBehaviour
 {
     [SerializeField] private Transform _nextSpawnPoint;
+    public Transform[] obstacleSpawnPoint;
+
 
     private void OnEnable()
     {
@@ -18,7 +20,7 @@ public class ZoneTile : MonoBehaviour
 
     private void DisableZone()
     {
-        ZoneMover.instance.SpawnNextZone(1);
         gameObject.SetActive(false);
+        ZoneMover.instance.SpawnNextZone(1);
     }
 }

@@ -5,16 +5,18 @@ using UnityEngine;
 
 public class ObjectPooler : MonoBehaviour
 {
-    private List<GameObject> _poolObjects;
+    private List<ZoneTile> _poolObjects;
     private int _poolAmount;
     private bool _willGrow;
 
-    private List<GameObject> _poolList;
+    private List<ZoneTile> _poolList;
+    private ObstacleFactory _obstacleFactory;
 
     [SerializeField] private ObjectPoolerScriptableObject _objectPoolerScriptableObject;
 
     private void Awake()
     {
+        _obstacleFactory = GetComponent<ObstacleFactory>();
         _poolObjects = _objectPoolerScriptableObject.poolObjectVariants;
         _poolAmount = _objectPoolerScriptableObject.poolAmount;
         _willGrow = _objectPoolerScriptableObject.willGrow;
@@ -24,7 +26,7 @@ public class ObjectPooler : MonoBehaviour
 
     private void CreatePool()
     {
-        _poolList = new List<GameObject>();
+        _poolList = new List<ZoneTile>();
 
         int index = 0;
         for(int i = 0; i < _poolAmount; i++)
@@ -34,23 +36,41 @@ public class ObjectPooler : MonoBehaviour
                 index = 0;
             }
 
-            GameObject newObject = Instantiate(_poolObjects[index]);
+            //GameObject newObject = Instantiate(_poolObjects[index]);
+            ZoneTile newZone = Instantiate(_poolObjects[index]);
             index++;
 
-            newObject.transform.SetParent(transform, true);
-            newObject.SetActive(false);
-            _poolList.Add(newObject);
+            newZone.transform.SetParent(transform, true);
+
+            CreateObstacle(newZone);
+
+            newZone.gameObject.SetActive(false);
+            _poolList.Add(newZone);
+        }
+    }
+
+    private void CreateObstacle(ZoneTile zone)
+    {
+        Transform[] obstacleSpawnPoints = zone.obstacleSpawnPoint;
+        for(int i = 0; i < obstacleSpawnPoints.Length; i++)
+        {
+            float rand = UnityEngine.Random.value;
+            if (rand < .5f)
+            {
+                IObstacle obstacle = _obstacleFactory.CreateRandomObstacle();
+                obstacle?.Spawn(obstacleSpawnPoints[i]);
+            }
         }
     }
 
     public GameObject GetPoolObject()
     {
-        var inactiveObject = _poolList.Where(obj => obj.activeInHierarchy == false);
+        var inactiveObject = _poolList.Where(obj => obj.gameObject.activeInHierarchy == false);
 
         if(inactiveObject.Count() > 0)
         {
             int index = UnityEngine.Random.Range(0, inactiveObject.Count());
-            return inactiveObject.ElementAt(index);
+            return inactiveObject.ElementAt(index).gameObject;
         }
 
         return null;

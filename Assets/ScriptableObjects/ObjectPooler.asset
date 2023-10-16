@@ -13,10 +13,6 @@ MonoBehaviour:
   m_Name: ObjectPooler
   m_EditorClassIdentifier: 
   poolObjectVariants:
-  - {fileID: 4624310797899304034, guid: 9c47339d767711e46a86fd008dd4d971, type: 3}
-  - {fileID: 4624310797899304034, guid: 0937959cc44ce0f489f966e7fdff2843, type: 3}
-  - {fileID: 4624310797899304034, guid: 919a4177f381b074482d275eab2d2483, type: 3}
-  startObject: {fileID: 0}
-  poolAmount: 10
-  startObjectsAmount: 0
+  - {fileID: 1773475929039604860, guid: e5c49fa7605da514180046ddb9ae605d, type: 3}
+  poolAmount: 15
   willGrow: 1

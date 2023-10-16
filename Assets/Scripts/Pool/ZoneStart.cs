@@ -10,7 +10,7 @@ public class ZoneStart : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         ZoneMover.instance.SetNextSpawnPoint(_nextSpawnPosition);
-        ZoneMover.instance.ActivateZones(6);
+        ZoneMover.instance.ActivateZones(_objectPoolerScriptableObject.poolAmount);
     }
 
     private void OnTriggerExit(Collider other)
