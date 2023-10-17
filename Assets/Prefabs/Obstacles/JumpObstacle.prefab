@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7036988673916984751}
   - component: {fileID: 7028792455466389009}
   - component: {fileID: 7817502282773643827}
+  - component: {fileID: 5503409022695407428}
   m_Layer: 0
   m_Name: JumpObstacle
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7051251029991214703}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 2, y: 1.5, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -96,3 +97,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 479dc1ac4273a774f81b39decd094376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &5503409022695407428
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7051251029991214703}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1, z: 2}
+  m_Center: {x: 0, y: 0.5, z: 0}

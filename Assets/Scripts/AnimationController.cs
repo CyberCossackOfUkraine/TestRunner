@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class AnimationController : MonoBehaviour
 {
+    [SerializeField] private PlayerStateController _playerStateController;
+
     private Animator _animator;
 
     private Dictionary<int, string> _animMaps;
@@ -20,7 +24,7 @@ public class AnimationController : MonoBehaviour
             instance = this;
         }
 
-        _animator = GetComponentInChildren<Animator>();
+        _animator = GetComponent<Animator>();
         InitAnimMaps();
     }
 
@@ -29,7 +33,10 @@ public class AnimationController : MonoBehaviour
         _animMaps = new Dictionary<int, string>
         {
             {1, "PlayerIdle" },
-            {2, "PlayerRun" }
+            {2, "PlayerRun" },
+            {3, "PlayerSlide" },
+            {4, "PlayerJump" },
+            {5, "PlayerDead" }
         };
     }
 
@@ -38,9 +45,15 @@ public class AnimationController : MonoBehaviour
         if (animNumber <= _animMaps.Count && animNumber > 0)
         {
             _animator.Play(_animMaps[animNumber]);
+            
         } else
         {
-            Debug.Log("no");
+            Debug.Log("Incorrect Animation Number");
         }
+    }
+
+    public void BackToRunState()
+    {
+        _playerStateController.SetStateRun();
     }
 }

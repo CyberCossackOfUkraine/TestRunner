@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class PlayerStateDead : IPlayerState
 {
+    public delegate void PlayerDied();
+    public static event PlayerDied OnPlayerDied;
     public void Enter()
     {
-        Debug.Log("Enter Dead State");
-        AnimationController.instance.SetAnimation(3);
+        AnimationController.instance.SetAnimation(5);
+        OnPlayerDied?.Invoke();
     }
 
     public void Exit()
     {
-        Debug.Log("Exit Dead State");
+
     }
 
     public void Update()
     {
-        Debug.Log("Update Dead State");
+
     }
 }

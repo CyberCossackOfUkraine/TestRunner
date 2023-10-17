@@ -8,6 +8,8 @@ public class InputManager : MonoBehaviour
 
     private bool _swipeLeft;
     private bool _swipeRight;
+    private bool _swipeUp;
+    private bool _swipeDown;
 
     private void Awake()
     {
@@ -29,6 +31,14 @@ public class InputManager : MonoBehaviour
     {
         return _swipeRight;
     }
+    public bool SwipeUp()
+    {
+        return _swipeUp;
+    }
+    public bool SwipeDown()
+    {
+        return _swipeDown;
+    }
 
     private void Update()
     {
@@ -37,7 +47,7 @@ public class InputManager : MonoBehaviour
 
     private void HandleInput()
     {
-        _swipeLeft = _swipeRight = false;
+        _swipeLeft = _swipeRight = _swipeUp = _swipeDown = false;
 
         if (Input.touchCount == 0)
             return;
@@ -51,6 +61,11 @@ public class InputManager : MonoBehaviour
             {
                 _swipeLeft |= deltaSwipe.x < 0;
                 _swipeRight |= deltaSwipe.x > 0;
+            } else
+            {
+                _swipeUp |= deltaSwipe.y > 0;
+                _swipeDown |= deltaSwipe.y < 0;
+
             }
         }
 
