@@ -22,7 +22,6 @@ public static class AdMobScript
             rewardedAd = null;
         }
 
-        Debug.Log("Loading the rewarded ad.");
 
         var adRequest = new AdRequest();
         adRequest.Keywords.Add("unity-admob-sample");

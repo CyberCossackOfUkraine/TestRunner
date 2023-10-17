@@ -14,7 +14,6 @@ public class CoroutineProxy : MonoBehaviour
         } else
         {
             instance = this;
-            Debug.Log("THIS");
         }
     }
 

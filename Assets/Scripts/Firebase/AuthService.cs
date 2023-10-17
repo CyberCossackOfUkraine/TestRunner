@@ -20,12 +20,12 @@ public class AuthService
         {
             if (task.IsCanceled)
             {
-                Debug.Log("Sign In Failed. Canceled.");
+                PopUpManager.instance.ShowMessage("Please check your credentials.");
                 return;
             }
             if (task.IsFaulted)
             {
-                Debug.Log("Sign In Error: " + task.Exception);
+                PopUpManager.instance.ShowMessage("Please check your credentials.");
                 return;
             }
             AuthResult result = task.Result;
@@ -48,13 +48,30 @@ public class AuthService
             }
             if (task.IsFaulted)
             {
-                Debug.Log("Sign Up Error: " + task.Exception);
+                PopUpManager.instance.ShowMessage("This email is already in use");
                 return;
             }
 
-            AuthResult result = task.Result;
-            Debug.Log("Sign Up Result: " + result.User.DisplayName + " , " + result.User.UserId);
+            FirebaseUser newUser = task.Result.User;
+
+            UserProfile profile = new UserProfile { DisplayName = username };
+
+            newUser.UpdateUserProfileAsync(profile).ContinueWithOnMainThread(task =>
+            {
+
+                if(task.IsCanceled || task.IsFaulted)
+                {
+                    Debug.Log("Update Profile Error: " + task.Exception);
+                    return;
+                }
+
+                Debug.Log("Username Set Successfully");
+
+                SceneChanger.ChangeScene("LevelScene");
+
+            });
             
+
         });
     }
 }
