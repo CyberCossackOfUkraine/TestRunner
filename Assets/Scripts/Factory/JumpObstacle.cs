@@ -15,7 +15,7 @@ public class JumpObstacle : MonoBehaviour, IObstacle
         transform.SetParent(spawnPosition);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (_playerStateController.GetCurrentStateType() == typeof(PlayerStateJump))
             return;

@@ -6,6 +6,8 @@ public class InputManager : MonoBehaviour
 {
     public static InputManager instance;
 
+    private Vector2 _startPos;
+
     private bool _swipeLeft;
     private bool _swipeRight;
     private bool _swipeUp;
@@ -54,6 +56,30 @@ public class InputManager : MonoBehaviour
 
         Touch touch = Input.GetTouch(0);
 
+        switch(touch.phase)
+        {
+            case TouchPhase.Began:
+                _startPos = touch.position;
+                break;
+
+            case TouchPhase.Ended:
+                Vector3 deltaSwipe = touch.position - _startPos;
+
+                if (Mathf.Abs(deltaSwipe.x) > Mathf.Abs(deltaSwipe.y))
+                {
+                    _swipeLeft |= deltaSwipe.x < 0;
+                    _swipeRight |= deltaSwipe.x > 0;
+                }
+                else
+                {
+                    _swipeUp |= deltaSwipe.y > 0;
+                    _swipeDown |= deltaSwipe.y < 0;
+
+                }
+                break;
+
+        }
+        /*
         if (touch.phase == TouchPhase.Ended)
         {
             Vector2 deltaSwipe = touch.deltaPosition;
@@ -68,6 +94,7 @@ public class InputManager : MonoBehaviour
 
             }
         }
+        */
 
         
     }

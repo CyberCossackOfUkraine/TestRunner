@@ -15,7 +15,7 @@ public class SlideObstacle : MonoBehaviour, IObstacle
         transform.position = new Vector3(spawnPosition.position.x, transform.position.y, spawnPosition.position.z);
         transform.SetParent(spawnPosition);
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (_playerStateController.GetCurrentStateType() == typeof(PlayerStateSlide))
             return;
