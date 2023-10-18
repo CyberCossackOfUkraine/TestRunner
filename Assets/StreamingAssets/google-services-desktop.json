@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "654533067102",
+    "firebase_url": "https://runner-a1c20-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "runner-a1c20",
     "storage_bucket": "runner-a1c20.appspot.com"
   },

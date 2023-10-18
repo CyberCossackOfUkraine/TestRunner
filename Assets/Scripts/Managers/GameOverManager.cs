@@ -15,6 +15,8 @@ public class GameOverManager : MonoBehaviour
     private Text _restartGameButtonText;
     private Text _watchAdButtonText;
 
+    private bool _isAdWatched;
+
     private void Awake()
     {
         InitButtonText();
@@ -47,8 +49,15 @@ public class GameOverManager : MonoBehaviour
         _gameOverPanel.DOFade(0.5f, 1f);
         _restartGameButton.image.DOFade(1f, 1f);
         _restartGameButtonText.DOFade(1f, 1f);
-        _watchAdButton.image.DOFade(1f, 1f);
-        _watchAdButtonText.DOFade(1f, 1f);
+        if (!_isAdWatched)
+        {
+            _watchAdButton.image.DOFade(1f, 1f);
+            _watchAdButtonText.DOFade(1f, 1f);
+        }
+        else
+        {
+            _watchAdButton.gameObject.SetActive(false);
+        }
     }
 
     private void AddListeners()
@@ -71,6 +80,7 @@ public class GameOverManager : MonoBehaviour
 
     private void ResurrectPlayer()
     {
+        _isAdWatched = true;
         HidePanel();
         PlayerStateController.instance.SetPlayerImmortal(1);
         PlayerStateController.instance.SetStateRun();

@@ -4,14 +4,18 @@ using UnityEngine;
 using Firebase.Auth;
 using Firebase.Extensions;
 using Firebase;
+using static UnityEngine.UIElements.UxmlAttributeDescription;
+using Firebase.Database;
 
 public class AuthService
 {
     private FirebaseAuth auth;
+    private DatabaseReference databaseReference;
 
-    public AuthService(FirebaseAuth auth)
+    public AuthService(FirebaseAuth auth, DatabaseReference databaseReference)
     {
         this.auth = auth;
+        this.databaseReference = databaseReference;
     }
 
     public void SignIn(string email, string password)
@@ -67,11 +71,30 @@ public class AuthService
 
                 Debug.Log("Username Set Successfully");
 
-                SceneChanger.ChangeScene("LevelScene");
+                UpdateDatabaseUsername(newUser);
+
 
             });
             
 
         });
+    }
+    private void UpdateDatabaseUsername(FirebaseUser user)
+    {
+        databaseReference.Child("users").Child(user.UserId).Child("username").SetValueAsync(user.DisplayName).ContinueWithOnMainThread(task =>
+        {
+
+            if (task.IsFaulted || task.IsCanceled)
+            {
+                Debug.LogError("Error when updating username");
+                return;
+            }
+
+            Debug.Log("Database Username updated successfully");
+
+            SceneChanger.ChangeScene("LevelScene");
+
+        });
+
     }
 }

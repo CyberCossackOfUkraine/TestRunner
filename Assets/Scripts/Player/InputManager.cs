@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputManager : MonoBehaviour
+public class InputManager : IControlStrategy
 {
-    public static InputManager instance;
 
     private Vector2 _startPos;
 
@@ -13,46 +12,30 @@ public class InputManager : MonoBehaviour
     private bool _swipeUp;
     private bool _swipeDown;
 
-    private void Awake()
-    {
-        if(instance != null && instance != this)
-        {
-            Destroy(this);
-        } else
-        {
-            instance = this;
-        }
-    }
-
-    public bool SwipeLeft()
+    public bool Left()
     {
         return _swipeLeft;
     }
 
-    public bool SwipeRight()
+    public bool Right()
     {
         return _swipeRight;
     }
-    public bool SwipeUp()
+    public bool Up()
     {
         return _swipeUp;
     }
-    public bool SwipeDown()
+    public bool Down()
     {
         return _swipeDown;
     }
 
-    private void Update()
-    {
-        if (Time.timeScale == 0f)
-            return;
-
-        HandleInput();
-    }
-
-    private void HandleInput()
+    public void HandleInput()
     {
         _swipeLeft = _swipeRight = _swipeUp = _swipeDown = false;
+
+        if (Time.timeScale == 0f)
+            return;
 
         if (Input.touchCount == 0)
             return;
@@ -82,23 +65,6 @@ public class InputManager : MonoBehaviour
                 break;
 
         }
-        /*
-        if (touch.phase == TouchPhase.Ended)
-        {
-            Vector2 deltaSwipe = touch.deltaPosition;
-            if (Mathf.Abs(deltaSwipe.x) > Mathf.Abs(deltaSwipe.y))
-            {
-                _swipeLeft |= deltaSwipe.x < 0;
-                _swipeRight |= deltaSwipe.x > 0;
-            } else
-            {
-                _swipeUp |= deltaSwipe.y > 0;
-                _swipeDown |= deltaSwipe.y < 0;
-
-            }
-        }
-        */
-
         
     }
 
