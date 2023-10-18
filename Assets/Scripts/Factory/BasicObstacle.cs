@@ -17,6 +17,9 @@ public class BasicObstacle : MonoBehaviour, IObstacle
     
     private void OnTriggerStay(Collider other)
     {
+        if (_playerStateController.IsPlayerImmortal()) 
+            return;
+
         _playerStateController.SetStateDead();
     }
 }

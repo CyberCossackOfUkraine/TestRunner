@@ -8,17 +8,24 @@ using DG.Tweening;
 public class GameOverManager : MonoBehaviour
 {
     [SerializeField] private Image _gameOverPanel;
-
+    [Space]
     [SerializeField] private Button _restartGameButton;
-    [SerializeField] private Text _restartGameButtonText;
-
     [SerializeField] private Button _watchAdButton;
-    [SerializeField] private Text _watchAdButtonText;
+
+    private Text _restartGameButtonText;
+    private Text _watchAdButtonText;
 
     private void Awake()
     {
+        InitButtonText();
         HidePanel();
         AddListeners();
+    }
+
+    private void InitButtonText()
+    {
+        _restartGameButtonText = _restartGameButton.GetComponentInChildren<Text>();
+        _watchAdButtonText = _watchAdButton.GetComponentInChildren<Text>();
     }
 
     private void HidePanel()
@@ -65,6 +72,7 @@ public class GameOverManager : MonoBehaviour
     private void ResurrectPlayer()
     {
         HidePanel();
+        PlayerStateController.instance.SetPlayerImmortal(1);
         PlayerStateController.instance.SetStateRun();
     }
 
@@ -72,4 +80,5 @@ public class GameOverManager : MonoBehaviour
     {
         ShowPanel();
     }
+
 }

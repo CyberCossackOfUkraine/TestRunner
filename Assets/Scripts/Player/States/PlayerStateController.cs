@@ -11,6 +11,7 @@ public class PlayerStateController : MonoBehaviour
     [SerializeField] private AnimationController _animationController;
     [SerializeField] private PlayerMovement _playerMovement;
 
+    private bool _isPlayerImmortal;
     public static PlayerStateController instance;
 
     // Вместо получения IPlayerState, использовать дженерик
@@ -101,6 +102,22 @@ public class PlayerStateController : MonoBehaviour
     {
         var type = GetState<PlayerStateSlide>();
         SetState(type);
+    }
+
+    public void SetPlayerImmortal(int seconds)
+    {
+        _isPlayerImmortal = true;
+        Invoke("ResetImmortality", seconds);
+    }
+
+    private void ResetImmortality()
+    {
+        _isPlayerImmortal = false;
+    }
+
+    public bool IsPlayerImmortal()
+    {
+        return _isPlayerImmortal;
     }
 
     public Type GetCurrentStateType()

@@ -44,6 +44,9 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
+        if (Time.timeScale == 0f)
+            return;
+
         HandleInput();
     }
 
