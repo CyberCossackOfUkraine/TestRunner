@@ -6,14 +6,14 @@ public class PlayerMovement : MonoBehaviour
 {
     private CharacterController _characterController;
     private PlayerStateController _playerStateController;
-    private AnimationController _animationController;
-    private CoroutineProxy _coroutineProxy;
 
+    private IControlStrategy _inputController;
+    [SerializeField] private SettingsScriptableObject _settings;
     [SerializeField] private int _currentLane;
-
-    [SerializeField] private float _currentSpeed;
-    [SerializeField] private float _acceleration;
     [SerializeField] private float _laneWidth;
+
+    private float _currentSpeed;
+    private float _acceleration;
     private float _forwardSpeed;
     private bool _isMovingSide;
 
@@ -22,14 +22,19 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         InitVars();
+        #if UNITY_EDITOR
+            _inputController = new KeyboardInputManager();
+        #elif UNITY_ANDROID
+            _inputController = new InputManager();
+        #endif
     }
 
     private void InitVars()
     {
         _characterController = GetComponent<CharacterController>();
         _playerStateController = GetComponent<PlayerStateController>();
-        _animationController = GetComponentInChildren<AnimationController>();
-        _coroutineProxy = GetComponent<CoroutineProxy>();
+        _currentSpeed = _settings._playerStartSpeed;
+        _acceleration = _settings._playerSpeedAcceleration;
     }
 
     public void Update()
@@ -38,6 +43,8 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
+
+        _inputController.HandleInput();
 
         MoveForward();
         if (!_isMovingSide)
@@ -54,19 +61,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleSwipeInput()
     {
-        if (InputManager.instance.SwipeLeft())
+        if (_inputController.Left())
         {
             ChangeLane(-1);
         }
-        else if (InputManager.instance.SwipeRight())
+        else if (_inputController.Right())
         {
             ChangeLane(1);
         }
-        else if (InputManager.instance.SwipeDown())
+        else if (_inputController.Down())
         {
             Slide();
         }
-        else if (InputManager.instance.SwipeUp())
+        else if (_inputController.Up())
         {
             Jump();
         }

@@ -10,9 +10,14 @@ public class LevelManager : MonoBehaviour
 {
     [SerializeField] private Button _startButton;
     [SerializeField] private Button _logOutButton;
+    [SerializeField] private Button _scoreboardButton;
+
+    [Space] 
+    [SerializeField] private GameObject _scoreboardPanel;
 
     private Text _startButtonText;
     private Text _logOutButtonText;
+    private Text _scoreboardButtonText;
 
     public delegate void GameStarted();
     public static event GameStarted OnGameStarted;
@@ -23,25 +28,37 @@ public class LevelManager : MonoBehaviour
 
         _startButton.onClick.AddListener(StartGame);
         _logOutButton.onClick.AddListener(LogOut);
+        _scoreboardButton.onClick.AddListener(OpenScoreboard);
     }
 
     private void InitButtonText()
     {
         _startButtonText = _startButton.GetComponentInChildren<Text>();
         _logOutButtonText = _logOutButton.GetComponentInChildren<Text>();
+        _scoreboardButtonText = _scoreboardButton.GetComponentInChildren<Text>();
 
+    }
+
+    private void OpenScoreboard()
+    {
+        _scoreboardPanel.SetActive(true);
     }
 
     private void StartGame()
     {
         PlayerStateController.instance.SetStateRun();
         OnGameStarted?.Invoke();
-        Debug.Log("GameStartedInvoke");
+
         _startButton.image.DOFade(0f, 1f);
         _startButtonText.DOFade(0f, 1f).OnComplete(delegate { _startButton.gameObject.SetActive(false); });
 
         _logOutButton.image.DOFade(0f, 1f);
         _logOutButtonText.DOFade(0f, 1f).OnComplete(delegate { _logOutButton.gameObject.SetActive(false); });
+
+        _scoreboardButton.image.DOFade(0f, 1f);
+        _scoreboardButtonText.DOFade(0f, 1f).OnComplete(delegate { _scoreboardButton.gameObject.SetActive(false); });
+
+
     }
 
     private void LogOut()

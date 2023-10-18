@@ -6,6 +6,7 @@ using Firebase.Auth;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
 using UnityEngine.SceneManagement;
+using Firebase.Database;
 
 public class AuthManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class AuthManager : MonoBehaviour
 
     private FirebaseAuth auth;
     private FirebaseUser user;
+    private DatabaseReference _dbReference;
 
     private AuthService authService;
 
@@ -36,7 +38,8 @@ public class AuthManager : MonoBehaviour
     private void InitializeFirebase()
     {
         auth = FirebaseAuth.DefaultInstance;
-        authService = new AuthService(auth);
+        _dbReference = FirebaseDatabase.DefaultInstance.RootReference;
+        authService = new AuthService(auth, _dbReference);
     }
 
     public void SwapLoginAndRegister()
@@ -85,6 +88,8 @@ public class AuthManager : MonoBehaviour
 
         authService.SignUp(usernameRegisterInput.text, emailRegisterInput.text, passwordRegisterInput.text);
     }
+
+
 
     private bool IsUsernameValid(string username)
     {
