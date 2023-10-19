@@ -133,13 +133,15 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         PlayerStateDead.OnPlayerDied += StopMoving;
-        LevelManager.OnGameStarted += GameStarted;
+        LevelManager.OnGameStarted += EnableMoving;
+        AdMobScript.OnRewardEarned += EnableMoving;
     }
 
     private void OnDisable()
     {
         PlayerStateDead.OnPlayerDied -= StopMoving;
-        LevelManager.OnGameStarted -= GameStarted;
+        LevelManager.OnGameStarted -= EnableMoving;
+        AdMobScript.OnRewardEarned -= EnableMoving;
     }
 
     public void StopMoving()
@@ -147,7 +149,7 @@ public class PlayerMovement : MonoBehaviour
         canMove = false;
     }
 
-    private void GameStarted()
+    public void EnableMoving()
     {
         canMove = true;
     }
