@@ -15,18 +15,19 @@ public class ObstacleFactory : MonoBehaviour
     }
 
     private int GetRand() {
-        int rand = Random.Range(0, _obstacles.Length);
+        int rand;
+
+        do
+        {
+            rand = Random.Range(0, _obstacles.Length);
+        } while (rand == oldRand & ++sameObstacleCounter >= 2);
 
         if (oldRand == rand)
             sameObstacleCounter++;
         else
             sameObstacleCounter = 0;
 
-        if (sameObstacleCounter >= 2)
-            GetRand();
-
         oldRand = rand;
-
         return rand;
     }
 }

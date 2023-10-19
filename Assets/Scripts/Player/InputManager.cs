@@ -49,6 +49,8 @@ public class InputManager : IControlStrategy
                 break;
 
             case TouchPhase.Ended:
+                if (touch.position == Vector2.zero)
+                    return;
                 Vector3 deltaSwipe = touch.position - _startPos;
 
                 if (Mathf.Abs(deltaSwipe.x) > Mathf.Abs(deltaSwipe.y))
