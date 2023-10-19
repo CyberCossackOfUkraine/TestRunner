@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class InputManager : IControlStrategy
 {
-    private Vector2 _startPos;
+    private Vector2 _startPos = Vector2.zero;
 
     private bool _swipeLeft;
     private bool _swipeRight;

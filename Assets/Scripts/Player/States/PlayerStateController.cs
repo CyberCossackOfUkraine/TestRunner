@@ -34,7 +34,7 @@ public class PlayerStateController : MonoBehaviour
     private void InitStates()
     {
         _statesMap = new Dictionary<Type, IPlayerState>();
-        _statesMap[typeof(PlayerStateRun)] = new PlayerStateRun(_animationController, _playerMovement);
+        _statesMap[typeof(PlayerStateRun)] = new PlayerStateRun(_animationController);
         _statesMap[typeof(PlayerStateIdle)] = new PlayerStateIdle();
         _statesMap[typeof(PlayerStateDead)] = new PlayerStateDead();
         _statesMap[typeof(PlayerStateJump)] = new PlayerStateJump(_animationController);

@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
 
     public bool canMove;
 
+    private bool _isGameStarted;
+
     private void Awake()
     {
         InitVars();
@@ -131,15 +133,22 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         PlayerStateDead.OnPlayerDied += StopMoving;
+        LevelManager.OnGameStarted += GameStarted;
     }
 
     private void OnDisable()
     {
         PlayerStateDead.OnPlayerDied -= StopMoving;
+        LevelManager.OnGameStarted -= GameStarted;
     }
 
     public void StopMoving()
     {
         canMove = false;
+    }
+
+    private void GameStarted()
+    {
+        canMove = true;
     }
 }
