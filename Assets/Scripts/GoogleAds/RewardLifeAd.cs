@@ -1,12 +1,8 @@
 using GoogleMobileAds.Api;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class RewardLifeAd : MonoBehaviour
 {
-
     private void Awake()
     {
         MobileAds.Initialize(initStatus => { });
@@ -22,6 +18,5 @@ public class RewardLifeAd : MonoBehaviour
         {
             Debug.Log("Rewarded ad full screen content closed.");
         };
-
     }
 }

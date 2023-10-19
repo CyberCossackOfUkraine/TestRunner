@@ -1,23 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Firebase;
 using Firebase.Auth;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
-using UnityEngine.SceneManagement;
 using Firebase.Database;
 
 public class AuthManager : MonoBehaviour
 {
+    [Header("Panels")]
     [SerializeField] private GameObject authPanel;
     [SerializeField] private GameObject registerPanel;
-
-    private FirebaseAuth auth;
-    private FirebaseUser user;
-    private DatabaseReference _dbReference;
-
-    private AuthService authService;
 
     [Header("Login")]
     [SerializeField] private InputField emailLoginInput;
@@ -29,6 +20,9 @@ public class AuthManager : MonoBehaviour
     [SerializeField] private InputField passwordRegisterInput;
     [SerializeField] private InputField passwordRepeatRegisterInput;
 
+    private FirebaseAuth auth;
+    private DatabaseReference _dbReference;
+    private AuthService authService;
 
     private void Start()
     {
@@ -88,8 +82,6 @@ public class AuthManager : MonoBehaviour
 
         authService.SignUp(usernameRegisterInput.text, emailRegisterInput.text, passwordRegisterInput.text);
     }
-
-
 
     private bool IsUsernameValid(string username)
     {

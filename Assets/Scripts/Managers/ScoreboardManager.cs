@@ -1,9 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.Rendering.DebugUI.Table;
 
 public class ScoreboardManager : MonoBehaviour
 {
@@ -17,14 +15,11 @@ public class ScoreboardManager : MonoBehaviour
     private void Awake()
     {
         _closeScoreboardButton.onClick.AddListener(CloseScoreboard);
-        DatabaseManager.instance.GetScores((scores) =>
+        Singleton.Instance.DatabaseManager.GetScores((scores) =>
         {
             _scores = scores;
             UpdateScoreboard();
-
         });
-        //ClearBoard();
-        
     }
 
     private void CloseScoreboard()
@@ -36,14 +31,11 @@ public class ScoreboardManager : MonoBehaviour
     {
         return _scores.OrderByDescending(x => x.score);
     }
-
-
     public void ClearBoard()
     {
         _scores.Clear();
         UpdateScoreboard();
     }
-
 
     public void UpdateScoreboard()
     {

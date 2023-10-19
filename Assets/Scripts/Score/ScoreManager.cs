@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
@@ -16,7 +14,7 @@ public class ScoreManager : MonoBehaviour
     {
         HideScore();
         _scoreCalculator = new BasicScoreCalculator();
-        _playerPosition = PlayerStateController.instance.transform;
+        _playerPosition = Singleton.Instance.PlayerStateController.transform;
     }
 
     private void Update()
@@ -33,11 +31,11 @@ public class ScoreManager : MonoBehaviour
 
     private void UpdateDatabaseScore()
     {
-        DatabaseManager.instance.GetUserHighscore((score) =>
+        Singleton.Instance.DatabaseManager.GetUserHighscore((score) =>
         {
             if (score < _currentScore)
             {
-                DatabaseManager.instance.SetDatabaseScore(_currentScore);
+                Singleton.Instance.DatabaseManager.SetDatabaseScore(_currentScore);
             }
 
         });

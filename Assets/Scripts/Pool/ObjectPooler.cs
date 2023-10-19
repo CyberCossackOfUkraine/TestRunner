@@ -1,18 +1,17 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class ObjectPooler : MonoBehaviour
 {
+    [SerializeField] private ObjectPoolerScriptableObject _objectPoolerScriptableObject;
+
     private List<ZoneTile> _poolObjects;
     private int _poolAmount;
     private bool _willGrow;
 
     private List<ZoneTile> _poolList;
     private ObstacleFactory _obstacleFactory;
-
-    [SerializeField] private ObjectPoolerScriptableObject _objectPoolerScriptableObject;
 
     private void Awake()
     {
@@ -36,7 +35,6 @@ public class ObjectPooler : MonoBehaviour
                 index = 0;
             }
 
-            //GameObject newObject = Instantiate(_poolObjects[index]);
             ZoneTile newZone = Instantiate(_poolObjects[index]);
             index++;
 
@@ -54,7 +52,7 @@ public class ObjectPooler : MonoBehaviour
         Transform[] obstacleSpawnPoints = zone.obstacleSpawnPoint;
         for(int i = 0; i < obstacleSpawnPoints.Length; i++)
         {
-            float rand = UnityEngine.Random.value;
+            float rand = Random.value;
             if (rand < .5f)
             {
                 IObstacle obstacle = _obstacleFactory.CreateRandomObstacle();
@@ -69,7 +67,7 @@ public class ObjectPooler : MonoBehaviour
 
         if(inactiveObject.Count() > 0)
         {
-            int index = UnityEngine.Random.Range(0, inactiveObject.Count());
+            int index = Random.Range(0, inactiveObject.Count());
             return inactiveObject.ElementAt(index).gameObject;
         }
 

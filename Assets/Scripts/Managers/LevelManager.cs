@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-using UnityEngine.SceneManagement;
 using Firebase.Auth;
 
 public class LevelManager : MonoBehaviour
@@ -46,7 +43,7 @@ public class LevelManager : MonoBehaviour
 
     private void StartGame()
     {
-        PlayerStateController.instance.SetStateRun();
+        Singleton.Instance.PlayerStateController.SetStateRun();
         OnGameStarted?.Invoke();
 
         _startButton.image.DOFade(0f, 1f);
@@ -58,7 +55,7 @@ public class LevelManager : MonoBehaviour
         _scoreboardButton.image.DOFade(0f, 1f);
         _scoreboardButtonText.DOFade(0f, 1f).OnComplete(delegate { _scoreboardButton.gameObject.SetActive(false); });
 
-
+        _scoreboardPanel.SetActive(false);
     }
 
     private void LogOut()

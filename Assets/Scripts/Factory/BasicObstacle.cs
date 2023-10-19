@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BasicObstacle : MonoBehaviour, IObstacle
@@ -7,7 +5,7 @@ public class BasicObstacle : MonoBehaviour, IObstacle
     private PlayerStateController _playerStateController;
     private void Awake()
     {
-        _playerStateController = PlayerStateController.instance;
+        _playerStateController = Singleton.Instance.PlayerStateController;
     }
     public void Spawn(Transform spawnPosition)
     {

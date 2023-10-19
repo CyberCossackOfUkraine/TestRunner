@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InputManager : IControlStrategy
 {
-
     private Vector2 _startPos;
 
     private bool _swipeLeft;
@@ -62,7 +59,6 @@ public class InputManager : IControlStrategy
                 {
                     _swipeUp |= deltaSwipe.y > 0;
                     _swipeDown |= deltaSwipe.y < 0;
-
                 }
                 break;
 

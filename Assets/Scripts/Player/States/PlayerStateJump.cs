@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class PlayerStateJump : IPlayerState
 {
     private AnimationController _animationController;

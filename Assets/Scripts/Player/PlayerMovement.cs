@@ -1,18 +1,18 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private SettingsScriptableObject _settings;
+    [SerializeField] private int _currentLane;
+    [SerializeField] private float _laneWidth;
+    [SerializeField] private float _currentSpeed;
+
     private CharacterController _characterController;
     private PlayerStateController _playerStateController;
 
     private IControlStrategy _inputController;
-    [SerializeField] private SettingsScriptableObject _settings;
-    [SerializeField] private int _currentLane;
-    [SerializeField] private float _laneWidth;
 
-    [SerializeField] private float _currentSpeed;
     private float _maxSpeed;
     private float _acceleration;
     private float _forwardSpeed;
@@ -128,7 +128,6 @@ public class PlayerMovement : MonoBehaviour
         }
         _isMovingSide = false;
     }
-
     private void OnEnable()
     {
         PlayerStateDead.OnPlayerDied += StopMoving;

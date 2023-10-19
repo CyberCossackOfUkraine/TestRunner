@@ -3,27 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using Firebase.Database;
 using Firebase.Auth;
-using Firebase.Extensions;
 using System;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class DatabaseManager : MonoBehaviour
 {
     private DatabaseReference _dbReference;
     private FirebaseUser _user;
 
-    public static DatabaseManager instance;
-
     private void Awake()
     {
-        if (instance != this && instance != null)
-        {
-            Destroy(this);
-        } else
-        {
-            instance = this;
-        }
-
         _dbReference = FirebaseDatabase.DefaultInstance.RootReference;
         _user = FirebaseAuth.DefaultInstance.CurrentUser;
     }
@@ -62,10 +50,7 @@ public class DatabaseManager : MonoBehaviour
             {
                 onComplete?.Invoke(0);
             }
-
-
         }
-
     }
 
     public void GetScores(Action<List<Score>>onComplete)
@@ -98,12 +83,7 @@ public class DatabaseManager : MonoBehaviour
 
                 }
             }
-                onComplete?.Invoke(scores);
+            onComplete?.Invoke(scores);
         }
-
-
     }
-
-
-
 }
