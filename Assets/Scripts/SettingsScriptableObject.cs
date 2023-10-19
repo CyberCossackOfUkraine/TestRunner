@@ -6,6 +6,7 @@ using UnityEngine;
 public class SettingsScriptableObject : ScriptableObject
 {
     public float _playerStartSpeed;
+    public float _playerMaxSpeed;
     public float _playerSpeedAcceleration;
     
 }

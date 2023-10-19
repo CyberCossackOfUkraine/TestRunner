@@ -30,7 +30,7 @@ public class AuthManager : MonoBehaviour
     [SerializeField] private InputField passwordRepeatRegisterInput;
 
 
-    private void Awake()
+    private void Start()
     {
         InitializeFirebase();
     }
