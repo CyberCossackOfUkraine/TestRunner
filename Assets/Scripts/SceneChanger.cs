@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,7 +12,6 @@ public static class SceneChanger
         {
             Debug.LogError("Scene " + newScene + " does not exist");
         }
-
     }
 
     private static bool IsSceneExist(string newScene)
@@ -33,10 +30,8 @@ public static class SceneChanger
             {
                 return true;
             }
-
         }
 
         return false;
-
     }
 }

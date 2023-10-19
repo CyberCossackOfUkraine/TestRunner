@@ -1,12 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class KeyboardInputManager : IControlStrategy
 {
-
-    private Vector2 _startPos;
-
     private bool _left;
     private bool _right;
     private bool _up;
@@ -39,7 +34,6 @@ public class KeyboardInputManager : IControlStrategy
 
         if (Input.GetKeyDown(KeyCode.W))
         {
-            Debug.Log(_up);
             _up = true;
         }
         if (Input.GetKeyDown(KeyCode.S))

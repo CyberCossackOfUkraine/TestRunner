@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InputManager : IControlStrategy
 {
-
-    private Vector2 _startPos;
+    private Vector2 _startPos = Vector2.zero;
 
     private bool _swipeLeft;
     private bool _swipeRight;
@@ -49,6 +46,8 @@ public class InputManager : IControlStrategy
                 break;
 
             case TouchPhase.Ended:
+                if (touch.position == Vector2.zero)
+                    return;
                 Vector3 deltaSwipe = touch.position - _startPos;
 
                 if (Mathf.Abs(deltaSwipe.x) > Mathf.Abs(deltaSwipe.y))
@@ -60,7 +59,6 @@ public class InputManager : IControlStrategy
                 {
                     _swipeUp |= deltaSwipe.y > 0;
                     _swipeDown |= deltaSwipe.y < 0;
-
                 }
                 break;
 

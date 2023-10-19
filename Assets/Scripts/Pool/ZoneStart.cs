@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ZoneStart : MonoBehaviour
@@ -9,8 +7,8 @@ public class ZoneStart : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        ZoneMover.instance.SetNextSpawnPoint(_nextSpawnPosition);
-        ZoneMover.instance.ActivateZones(_objectPoolerScriptableObject.poolAmount);
+        Singleton.Instance.ZoneMover.SetNextSpawnPoint(_nextSpawnPosition);
+        Singleton.Instance.ZoneMover.ActivateZones(_objectPoolerScriptableObject.poolAmount);
     }
 
     private void OnTriggerExit(Collider other)

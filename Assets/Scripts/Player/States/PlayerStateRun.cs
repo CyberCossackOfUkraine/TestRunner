@@ -1,21 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.XR;
-
 public class PlayerStateRun : IPlayerState
 {
     private AnimationController _animationController;
-    private PlayerMovement _playerMovement;
-    public PlayerStateRun(AnimationController animationController, PlayerMovement playerMovement) { 
+    public PlayerStateRun(AnimationController animationController) { 
         _animationController = animationController;
-        _playerMovement = playerMovement;
     }
 
     public void Enter()
     {
         _animationController.SetAnimation(2);
-        _playerMovement.canMove = true;
     }
 
     public void Exit()

@@ -1,25 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ZoneMover : MonoBehaviour
 {
-    public static ZoneMover instance;
-    [SerializeField] [Range(0, 10)] private int startPoolAmount;
+    [SerializeField][Range(0, 10)] private int startPoolAmount;
     [SerializeField] private ObjectPooler _objectPooler;
     [SerializeField] private ObjectPoolerScriptableObject _objectPoolerScriptableObject;
+    
     private Transform _nextSpawnPoint;
-
-    private void Awake()
-    {
-        if (instance != this && instance != null)
-        {
-            Destroy(this);
-        } else
-        {
-            instance = this;
-        }
-    }
 
     public void SetNextSpawnPoint(Transform spawnPoint)
     {

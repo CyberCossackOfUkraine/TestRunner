@@ -1,32 +1,20 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStateController : MonoBehaviour
 {
-    private Dictionary<Type, IPlayerState> _statesMap;
-    private IPlayerState _stateCurrent;
     [SerializeField] private CharacterController _characterController;
     [SerializeField] private AnimationController _animationController;
     [SerializeField] private PlayerMovement _playerMovement;
 
-    private bool _isPlayerImmortal;
-    public static PlayerStateController instance;
+    private Dictionary<Type, IPlayerState> _statesMap;
+    private IPlayerState _stateCurrent;
 
-    // Вместо получения IPlayerState, использовать дженерик
+    private bool _isPlayerImmortal;
 
     private void Awake()
     {
-        if (instance != null && instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            instance = this;
-        }
-
         InitStates();
     }
 
@@ -46,7 +34,7 @@ public class PlayerStateController : MonoBehaviour
     private void InitStates()
     {
         _statesMap = new Dictionary<Type, IPlayerState>();
-        _statesMap[typeof(PlayerStateRun)] = new PlayerStateRun(_animationController, _playerMovement);
+        _statesMap[typeof(PlayerStateRun)] = new PlayerStateRun(_animationController);
         _statesMap[typeof(PlayerStateIdle)] = new PlayerStateIdle();
         _statesMap[typeof(PlayerStateDead)] = new PlayerStateDead();
         _statesMap[typeof(PlayerStateJump)] = new PlayerStateJump(_animationController);

@@ -32,7 +32,7 @@ Transform:
   - {fileID: 1864038717335626109}
   - {fileID: 5599092101812321336}
   m_Father: {fileID: 5384805070819901178}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1381428505050365580
 GameObject:
@@ -68,9 +68,8 @@ Transform:
   - {fileID: 7972916844791463836}
   - {fileID: 1709251281278385347}
   - {fileID: 6810047450760460089}
-  - {fileID: 6454602801429498068}
   m_Father: {fileID: 5384805070819901178}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1426049150833827450
 GameObject:
@@ -101,7 +100,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5384805070819901178}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2829590283733568064
 GameObject:
@@ -212,7 +211,7 @@ Transform:
   - {fileID: 1060286872501622133}
   - {fileID: 6298412276627171300}
   m_Father: {fileID: 5384805070819901178}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4624310797899304034
 GameObject:
@@ -244,6 +243,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6454602801429498068}
   - {fileID: 4143316711225405041}
   - {fileID: 7452249862969998869}
   - {fileID: 5606675996118465121}
@@ -264,7 +264,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nextSpawnPoint: {fileID: 5606675996118465121}
-  obstacleSpawnPoint: []
+  obstacleSpawnPoint:
+  - {fileID: 3089257727617064270}
+  - {fileID: 1060286872501622133}
+  - {fileID: 6298412276627171300}
 --- !u!65 &6225291581808842162
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -431,8 +434,8 @@ Transform:
   m_Children:
   - {fileID: 5874132227854750985}
   - {fileID: 6244084504867153107}
-  m_Father: {fileID: 7452249862969998869}
-  m_RootOrder: 6
+  m_Father: {fileID: 5384805070819901178}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8610629874005300667
 GameObject:

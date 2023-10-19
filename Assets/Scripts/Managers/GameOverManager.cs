@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,6 +9,8 @@ public class GameOverManager : MonoBehaviour
     [Space]
     [SerializeField] private Button _restartGameButton;
     [SerializeField] private Button _watchAdButton;
+    [Space]
+    [SerializeField] private Text _gameOverText;
 
     private Text _restartGameButtonText;
     private Text _watchAdButtonText;
@@ -45,6 +45,8 @@ public class GameOverManager : MonoBehaviour
     private void ShowPanel()
     {
         _gameOverPanel.gameObject.SetActive(true);
+
+        _gameOverText.DOFade(1f, 1f);
 
         _gameOverPanel.DOFade(0.5f, 1f);
         _restartGameButton.image.DOFade(1f, 1f);
@@ -82,8 +84,8 @@ public class GameOverManager : MonoBehaviour
     {
         _isAdWatched = true;
         HidePanel();
-        PlayerStateController.instance.SetPlayerImmortal(1);
-        PlayerStateController.instance.SetStateRun();
+        Singleton.Instance.PlayerStateController.SetPlayerImmortal(1);
+        Singleton.Instance.PlayerStateController.SetStateRun();
     }
 
     private void PlayerDied()

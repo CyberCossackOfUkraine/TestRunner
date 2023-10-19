@@ -1,23 +1,26 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private SettingsScriptableObject _settings;
+    [SerializeField] private int _currentLane;
+    [SerializeField] private float _laneWidth;
+    [SerializeField] private float _currentSpeed;
+
     private CharacterController _characterController;
     private PlayerStateController _playerStateController;
 
     private IControlStrategy _inputController;
-    [SerializeField] private SettingsScriptableObject _settings;
-    [SerializeField] private int _currentLane;
-    [SerializeField] private float _laneWidth;
 
-    private float _currentSpeed;
+    private float _maxSpeed;
     private float _acceleration;
     private float _forwardSpeed;
     private bool _isMovingSide;
 
     public bool canMove;
+
+    private bool _isGameStarted;
 
     private void Awake()
     {
@@ -34,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
         _characterController = GetComponent<CharacterController>();
         _playerStateController = GetComponent<PlayerStateController>();
         _currentSpeed = _settings._playerStartSpeed;
+        _maxSpeed = _settings._playerMaxSpeed;
         _acceleration = _settings._playerSpeedAcceleration;
     }
 
@@ -56,7 +60,8 @@ public class PlayerMovement : MonoBehaviour
         _forwardSpeed = _currentSpeed * Time.deltaTime;
         Vector3 move = new Vector3(0f, 0f, _forwardSpeed);
         _characterController.Move(move);
-        _currentSpeed += _acceleration * Time.deltaTime;
+        if (_currentSpeed <  _maxSpeed)
+            _currentSpeed += _acceleration * Time.deltaTime;
     }
 
     private void HandleSwipeInput()
@@ -117,26 +122,33 @@ public class PlayerMovement : MonoBehaviour
             Vector3 sideMove = nextPosition - _characterController.transform.position;
 
             _characterController.Move(sideMove);
-            _currentSpeed += _acceleration * Time.deltaTime;
+            if (_currentSpeed < _maxSpeed)
+                _currentSpeed += _acceleration * Time.deltaTime;
             _forwardSpeed = _currentSpeed * Time.deltaTime;
             yield return null;
 
         }
         _isMovingSide = false;
     }
-
     private void OnEnable()
     {
         PlayerStateDead.OnPlayerDied += StopMoving;
+        LevelManager.OnGameStarted += GameStarted;
     }
 
     private void OnDisable()
     {
         PlayerStateDead.OnPlayerDied -= StopMoving;
+        LevelManager.OnGameStarted -= GameStarted;
     }
 
     public void StopMoving()
     {
         canMove = false;
+    }
+
+    private void GameStarted()
+    {
+        canMove = true;
     }
 }

@@ -1,8 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Xml.Serialization;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class AnimationController : MonoBehaviour
 {
@@ -12,18 +9,8 @@ public class AnimationController : MonoBehaviour
 
     private Dictionary<int, string> _animMaps;
 
-    public static AnimationController instance;
-
     private void Awake()
     {
-        if (instance != null && instance != this)
-        {
-            Destroy(this);
-        } else
-        {
-            instance = this;
-        }
-
         _animator = GetComponent<Animator>();
         InitAnimMaps();
     }

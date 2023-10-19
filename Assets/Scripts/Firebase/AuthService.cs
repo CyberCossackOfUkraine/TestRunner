@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Firebase.Auth;
 using Firebase.Extensions;
-using Firebase;
-using static UnityEngine.UIElements.UxmlAttributeDescription;
 using Firebase.Database;
 
 public class AuthService
@@ -75,8 +71,6 @@ public class AuthService
 
 
             });
-            
-
         });
     }
     private void UpdateDatabaseUsername(FirebaseUser user)
@@ -95,6 +89,5 @@ public class AuthService
             SceneChanger.ChangeScene("LevelScene");
 
         });
-
     }
 }
