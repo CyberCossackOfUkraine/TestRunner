@@ -20,20 +20,16 @@ public class PlayerMovement : MonoBehaviour
     private bool _isMovingSide;
 
     public bool canMove;
-
-    private bool _isGameStarted;
+    public float CurrentSpeed() => _currentSpeed;
 
     private void Awake()
     {
         InitVars();
-        /*
         #if UNITY_EDITOR
             _inputController = new KeyboardInputManager();
         #elif UNITY_ANDROID
             _inputController = new InputManager();
         #endif
-        */
-        _inputController = new InputManager();
 
 
     }

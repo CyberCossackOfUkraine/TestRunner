@@ -2817,6 +2817,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerStateController: {fileID: 1621274812}
+  _settings: {fileID: 11400000, guid: 702d65ec6fe4e6f428a86b45bb882f85, type: 2}
   _transitionSmoothness: 0.3
 --- !u!1 &984740126
 GameObject:

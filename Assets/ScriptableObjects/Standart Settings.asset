@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerStartSpeed: 10
   _playerMaxSpeed: 18
-  _playerSpeedAcceleration: 0.05
+  _playerSpeedAcceleration: 0.075

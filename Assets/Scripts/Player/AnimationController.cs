@@ -19,6 +19,7 @@ public class AnimationController : MonoBehaviour
         InitAnimMaps();
         InitAnimLengthMaps();
     }
+
     private void InitAnimMaps()
     {
         _animMaps = new Dictionary<int, string>
