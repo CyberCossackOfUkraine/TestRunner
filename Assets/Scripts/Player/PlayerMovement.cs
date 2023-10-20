@@ -26,11 +26,14 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         InitVars();
+        /*
         #if UNITY_EDITOR
             _inputController = new KeyboardInputManager();
         #elif UNITY_ANDROID
             _inputController = new InputManager();
         #endif
+        */
+        _inputController = new InputManager();
 
 
     }

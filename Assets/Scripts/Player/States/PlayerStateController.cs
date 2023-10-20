@@ -45,6 +45,7 @@ public class PlayerStateController : MonoBehaviour
     {
         if (newState == _stateCurrent)
             return;
+
         if (_stateCurrent != null)
         {
             _stateCurrent.Exit();

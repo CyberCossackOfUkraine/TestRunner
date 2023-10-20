@@ -32,17 +32,24 @@ public class LevelManager : MonoBehaviour
     {
         if (_isGameStarted)
             return;
-
-        if(Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+        if (Input.touchSupported)
         {
-            StartGame();
-        }
-        if (Input.touchCount > 0)
-        {
-            Touch touch = Input.GetTouch(0);
-
-            if (touch.phase == TouchPhase.Began && EventSystem.current.IsPointerOverGameObject(touch.fingerId)) 
+            if (Input.touchCount > 0)
             {
+                Touch touch = Input.GetTouch(0);
+
+                if (touch.phase == TouchPhase.Began && !EventSystem.current.IsPointerOverGameObject(touch.fingerId))
+                {
+                    Debug.Log("2");
+                    _isGameStarted = true;
+                    StartGame();
+                }
+            }
+        } else
+        {
+            if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+            {
+                Debug.Log("1");
                 StartGame();
             }
         }
