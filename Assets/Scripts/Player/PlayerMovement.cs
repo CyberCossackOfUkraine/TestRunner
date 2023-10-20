@@ -31,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
         #elif UNITY_ANDROID
             _inputController = new InputManager();
         #endif
+
+
     }
 
     private void InitVars()

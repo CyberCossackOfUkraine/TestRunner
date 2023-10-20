@@ -4,28 +4,18 @@ public class InputManager : IControlStrategy
 {
     private Vector2 _startPos = Vector2.zero;
 
+    private bool _swipeRegistered;
+
     private bool _swipeLeft;
     private bool _swipeRight;
     private bool _swipeUp;
     private bool _swipeDown;
 
-    public bool Left()
-    {
-        return _swipeLeft;
-    }
+    public bool Left() => _swipeLeft;
 
-    public bool Right()
-    {
-        return _swipeRight;
-    }
-    public bool Up()
-    {
-        return _swipeUp;
-    }
-    public bool Down()
-    {
-        return _swipeDown;
-    }
+    public bool Right() => _swipeRight;
+    public bool Up() => _swipeUp;
+    public bool Down() => _swipeDown;
 
     public void HandleInput()
     {
@@ -43,13 +33,13 @@ public class InputManager : IControlStrategy
         {
             case TouchPhase.Began:
                 _startPos = touch.position;
+                _swipeRegistered = false;
                 break;
 
-            case TouchPhase.Ended:
-                if (touch.position == Vector2.zero)
+            case TouchPhase.Moved:
+                if (_swipeRegistered)
                     return;
-                Vector3 deltaSwipe = touch.position - _startPos;
-
+                Vector2 deltaSwipe = touch.position - _startPos;
                 if (Mathf.Abs(deltaSwipe.x) > Mathf.Abs(deltaSwipe.y))
                 {
                     _swipeLeft |= deltaSwipe.x < 0;
@@ -60,6 +50,11 @@ public class InputManager : IControlStrategy
                     _swipeUp |= deltaSwipe.y > 0;
                     _swipeDown |= deltaSwipe.y < 0;
                 }
+                _swipeRegistered = true;
+                break;
+
+            case TouchPhase.Ended:
+                _swipeRegistered = false;
                 break;
 
         }
