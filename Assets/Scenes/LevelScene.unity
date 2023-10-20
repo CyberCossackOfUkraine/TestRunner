@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028359, g: 0.22571385, b: 0.30692258, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2817,7 +2817,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerStateController: {fileID: 1621274812}
-  _settings: {fileID: 11400000, guid: 702d65ec6fe4e6f428a86b45bb882f85, type: 2}
   _transitionSmoothness: 0.3
 --- !u!1 &984740126
 GameObject:
@@ -3285,6 +3284,7 @@ MonoBehaviour:
   _content: {fileID: 685417855}
   _closeScoreboardButton: {fileID: 947638093}
   _scoreBoardPanel: {fileID: 882183107}
+  _scoreboardPositions: 15
 --- !u!1 &1252353862
 GameObject:
   m_ObjectHideFlags: 0

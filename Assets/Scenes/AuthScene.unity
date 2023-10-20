@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028359, g: 0.22571385, b: 0.30692258, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1406,7 +1406,7 @@ MonoBehaviour:
   _passwordRepeatRegisterInput: {fileID: 811500471}
   _minUsernameLength: 5
   _maxUsernameLength: 15
-  _minPasswordLength: 0
+  _minPasswordLength: 6
 --- !u!4 &617530238
 Transform:
   m_ObjectHideFlags: 0

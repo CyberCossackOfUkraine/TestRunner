@@ -12,6 +12,8 @@ public class ScoreboardManager : MonoBehaviour
     [SerializeField] private Button _closeScoreboardButton;
     [SerializeField] private GameObject _scoreBoardPanel;
 
+    [SerializeField] private int _scoreboardPositions;
+
     private List<Score> _scores;
     private FirebaseUser _user;
 
@@ -46,6 +48,9 @@ public class ScoreboardManager : MonoBehaviour
         var scores = GetHighScores().ToArray();
         for (int i = 0; i < scores.Length; i++)
         {
+            if (i > _scoreboardPositions)
+                break;
+
             RowUI row = Instantiate(rowUi, _content);
             row.rank.text = (i + 1).ToString();
             row.name.text = scores[i].name;
