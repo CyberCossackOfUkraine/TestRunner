@@ -43,6 +43,8 @@ public class PlayerStateController : MonoBehaviour
 
     private void SetState(IPlayerState newState)
     {
+        if (newState == _stateCurrent)
+            return;
         if (_stateCurrent != null)
         {
             _stateCurrent.Exit();

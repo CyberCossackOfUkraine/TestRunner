@@ -1,3 +1,6 @@
+using System.Collections;
+using UnityEngine;
+
 public class PlayerStateRun : IPlayerState
 {
     private AnimationController _animationController;
