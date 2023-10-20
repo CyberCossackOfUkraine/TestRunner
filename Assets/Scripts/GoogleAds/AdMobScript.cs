@@ -34,8 +34,7 @@ public static class AdMobScript
                     return;
                 }
 
-                Debug.Log("Rewarded ad loaded with response : "
-                          + ad.GetResponseInfo());
+                Debug.Log("Rewarded ad loaded.");
 
                 rewardedAd = ad;
 

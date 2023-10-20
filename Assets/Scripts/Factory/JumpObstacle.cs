@@ -18,6 +18,9 @@ public class JumpObstacle : MonoBehaviour, IObstacle
         if (_playerStateController.GetCurrentStateType() == typeof(PlayerStateJump))
             return;
 
+        if (_playerStateController.GetCurrentStateType() == typeof(PlayerStateDead))
+            return;
+
         if (_playerStateController.IsPlayerImmortal())
             return;
 

@@ -33,7 +33,6 @@ public class AnimationController : MonoBehaviour
         if (animNumber <= _animMaps.Count && animNumber > 0)
         {
             _animator.CrossFade(_animMaps[animNumber], _transitionSmoothness);
-            
         } else
         {
             Debug.Log("Incorrect Animation Number");

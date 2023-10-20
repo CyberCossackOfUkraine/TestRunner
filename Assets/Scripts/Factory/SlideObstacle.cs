@@ -18,6 +18,9 @@ public class SlideObstacle : MonoBehaviour, IObstacle
         if (_playerStateController.GetCurrentStateType() == typeof(PlayerStateSlide))
             return;
 
+        if (_playerStateController.GetCurrentStateType() == typeof(PlayerStateDead))
+            return;
+
         if (_playerStateController.IsPlayerImmortal())
             return;
 
