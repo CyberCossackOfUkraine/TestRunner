@@ -5,7 +5,7 @@ public class ZoneStart : MonoBehaviour
     [SerializeField] private Transform _nextSpawnPosition;
     [SerializeField] private ObjectPoolerScriptableObject _objectPoolerScriptableObject;
 
-    private void OnTriggerEnter(Collider other)
+    private void Start()
     {
         Singleton.Instance.ZoneMover.SetNextSpawnPoint(_nextSpawnPosition);
         Singleton.Instance.ZoneMover.ActivateZones(_objectPoolerScriptableObject.poolAmount);

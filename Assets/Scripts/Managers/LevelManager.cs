@@ -60,7 +60,6 @@ public class LevelManager : MonoBehaviour
 
     private void LogOut()
     {
-        Debug.Log("Username: " + FirebaseAuth.DefaultInstance.CurrentUser.DisplayName);
         FirebaseAuth.DefaultInstance.SignOut();
         SceneChanger.ChangeScene("AuthScene");
     }

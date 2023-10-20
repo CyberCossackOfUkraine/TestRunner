@@ -71,16 +71,24 @@ public class DatabaseManager : MonoBehaviour
             Debug.LogError("Error when updating scoreboard");
         } else
         {
+
             DataSnapshot snapshot = task.Result;
 
             foreach (DataSnapshot childSnapshot in snapshot.Children)
             {
-                if (childSnapshot.HasChild("score"))
+                if (childSnapshot.HasChild("score") && childSnapshot.HasChild("username"))
                 {
-                    string name = childSnapshot.Child("username").Value.ToString();
-                    int score = int.Parse(childSnapshot.Child("score").Value.ToString());
-                    scores.Add(new Score(name, score));
-
+                    var usernameValue = childSnapshot.Child("username").Value;
+                    var scoreValue = childSnapshot.Child("score").Value;
+                    if (usernameValue != null && scoreValue != null)
+                    {
+                        string name = usernameValue.ToString();
+                        int score;
+                        if (int.TryParse(scoreValue.ToString(), out score))
+                        {
+                            scores.Add(new Score(name, score));
+                        }
+                    }
                 }
             }
             onComplete?.Invoke(scores);

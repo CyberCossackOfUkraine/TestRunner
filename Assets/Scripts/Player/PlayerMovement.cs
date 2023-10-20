@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private SettingsScriptableObject _settings;
     [SerializeField] private int _currentLane;
     [SerializeField] private float _laneWidth;
-    [SerializeField] private float _currentSpeed;
+    [SerializeField][Range(0,1)] private float _sideMoveDuration;
 
     private CharacterController _characterController;
     private PlayerStateController _playerStateController;
@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private IControlStrategy _inputController;
 
     private float _maxSpeed;
+    private float _currentSpeed;
     private float _acceleration;
     private float _forwardSpeed;
     private bool _isMovingSide;
@@ -109,14 +110,13 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator MoveX(Vector3 targetPosition)
     {
         _isMovingSide = true;
-        float duration = 0.1f;
         Vector3 startPosition = _characterController.transform.position;
         float elapsed = 0;
 
-        while (elapsed < duration)
+        while (elapsed < _sideMoveDuration)
         {
             elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / duration);
+            float t = Mathf.Clamp01(elapsed / _sideMoveDuration);
             Vector3 nextPosition = Vector3.Lerp(startPosition, targetPosition, t);
             nextPosition.z = _characterController.transform.position.z + _forwardSpeed * Time.deltaTime;
             Vector3 sideMove = nextPosition - _characterController.transform.position;

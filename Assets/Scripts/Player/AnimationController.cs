@@ -4,6 +4,7 @@ using UnityEngine;
 public class AnimationController : MonoBehaviour
 {
     [SerializeField] private PlayerStateController _playerStateController;
+    [SerializeField][Range(0,1)] private float _transitionSmoothness;
 
     private Animator _animator;
 
@@ -31,7 +32,7 @@ public class AnimationController : MonoBehaviour
     {
         if (animNumber <= _animMaps.Count && animNumber > 0)
         {
-            _animator.Play(_animMaps[animNumber]);
+            _animator.CrossFade(_animMaps[animNumber], _transitionSmoothness);
             
         } else
         {
