@@ -8,11 +8,13 @@ public class Singleton : MonoBehaviour
     [SerializeField] private DatabaseManager _databaseManager;
     [SerializeField] private PlayerStateController _playerStateController;
     [SerializeField] private ZoneMover _zoneMover;
+    [SerializeField] private CoroutineProxy _coroutineProxy;
 
     public AnimationController AnimationController => _animationController;
     public DatabaseManager DatabaseManager => _databaseManager;
     public PlayerStateController PlayerStateController => _playerStateController;
     public ZoneMover ZoneMover => _zoneMover;
+    public CoroutineProxy CoroutineProxy => _coroutineProxy;
 
     private void Awake()
     {

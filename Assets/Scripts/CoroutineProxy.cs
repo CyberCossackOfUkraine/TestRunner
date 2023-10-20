@@ -22,7 +22,7 @@ public class CoroutineProxy : MonoBehaviour
         return StartCoroutine(routine);
     }
 
-    public void StopCoroutine(Coroutine coroutine)
+    public void StopProxyCoroutine(Coroutine coroutine)
     {
         StopCoroutine(coroutine);
     }
